@@ -8,6 +8,8 @@ import lombok.*;
 @Builder
 public class ReviewDTO {
     private String reviewerId;
+    private String reviewerName;
     private int rating;
     private String comment;
+
 }
