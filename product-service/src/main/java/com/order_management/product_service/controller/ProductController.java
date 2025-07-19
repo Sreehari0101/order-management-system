@@ -21,6 +21,7 @@ public class ProductController {
     private final UpdateProductCommandHandler updateProductCommandHandler;
     private final DeleteProductCommandHandler deleteProductCommandHandler;
     private final UpdatePriceQuantityCommandHandler updatePriceQuantityCommandHandler;
+    private final GetProductsByCategoryCommandhandler getProductsByCategoryCommandhandler;
 
 
     @PostMapping
@@ -60,6 +61,12 @@ public class ProductController {
     public ResponseEntity<Void> deleteProductById(@PathVariable String productId){
         deleteProductCommandHandler.hande(productId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Product>>  getProductBycategory(@PathVariable String category){
+        List<Product> products = getProductsByCategoryCommandhandler.handle(category);
+        return ResponseEntity.ok(products);
     }
 
 

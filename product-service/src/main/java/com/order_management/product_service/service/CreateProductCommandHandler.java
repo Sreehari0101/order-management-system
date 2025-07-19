@@ -6,16 +6,18 @@ import com.order_management.product_service.repository.ProductRepository;
 import com.order_management.product_service.model.entity.Product;
 import com.order_management.product_service.model.entity.Review;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CreateProductCommandHandler {
     private final ProductRepository productRepository;
 
     public Product handle(CreateProductCommand command){
+        log.info("Reached Create handler: {}", command);
         List<Review> reviews = null;
         if(command.getReviews() != null){
             reviews = command.getReviews().stream().map(this::mapToReview).collect(Collectors.toList());
