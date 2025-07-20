@@ -1,5 +1,6 @@
 package com.order_management_system.order_service.model.command;
 
+import com.order_management_system.order_service.model.dto.OrderItemDTO;
 import com.order_management_system.order_service.model.entity.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,6 @@ import java.util.List;
 @Builder
 public class CreateOrderCommand {
     private String customerId;
-    private List<OrderItem> items;
+    private List<OrderItemDTO> items;
     private double totalAmount;
 }

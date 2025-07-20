@@ -1,5 +1,7 @@
 package com.order_management_system.order_service.service;
+import com.order_management_system.order_service.client.ProductClient;
 import com.order_management_system.order_service.model.command.CreateOrderCommand;
+import com.order_management_system.order_service.model.dto.ProductDTO;
 import com.order_management_system.order_service.model.entity.Order;
 import com.order_management_system.order_service.model.entity.OrderItem;
 import com.order_management_system.order_service.repository.OrderRepository;
@@ -14,27 +16,25 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CreateOrderCommandHandler {
     private final OrderRepository orderRepository;
+    private final ProductClient productClient;
     public Order handle(CreateOrderCommand command){
         List<OrderItem> orderItems = null;
-
         if(command.getItems() != null){
-            orderItems = command.getItems().stream().map(this::mapToOrderItem).collect(Collectors.toList());
+            command.getItems().stream().map(item ->{
+                ProductDTO product = productClient.getProductById(item.getProductId());
+                return OrderItem.builder()
+                        .productId(item.getProductId())
+                        .productName(product.getName())
+                        .price(product.getPrice())
+                        .quantity(item.getQuantity())
+                        .build();
+            }).collect(Collectors.toList());
         }
-        Order order = Order.builder()
-                .customerId(command.getCustomerId())
-                .items(orderItems)
-                .totalAmount(command.getTotalAmount())
-                .build();
-        return orderRepository.save(order);
-    }
+         Order order = Order.builder()
+                 .customerId(command.getCustomerId())
+                 .totalAmount()
+        }
 
-    private OrderItem mapToOrderItem(OrderItem item){
-        return OrderItem.builder()
-                .productId(item.getProductId())
-                .productName(item.getProductName())
-                .quantity(item.getQuantity())
-                .price(item.getPrice())
-                .build();
 
-    }
+
 }
