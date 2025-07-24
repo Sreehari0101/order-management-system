@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Document(collection = "products")
@@ -18,7 +19,7 @@ public class Product {
     private String productId;
     private String name;
     private String category;
-    private double price;
+    private BigDecimal price;
     private int quantity;
     private List<Review> reviews;
 

@@ -9,7 +9,7 @@ import lombok.*;
 public class ReviewDTO {
     private String reviewerId;
     private String reviewerName;
-    private int rating;
+    private double rating;
     private String comment;
 
 }

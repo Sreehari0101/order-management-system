@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class UpdatePriceQuantityCommand {
-    private double price;
+    private BigDecimal price;
     private int quantity;
 }

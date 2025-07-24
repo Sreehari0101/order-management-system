@@ -9,6 +9,7 @@ import com.order_management.product_service.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +37,7 @@ public class CreateProductCommandHandlerTest {
         CreateProductCommand command = CreateProductCommand.builder()
                 .name("Test Product")
                 .category("Electronics")
-                .price(299.99)
+                .price(BigDecimal.valueOf(299.99))
                 .quantity(10)
                 .reviews(List.of(reviewDTO))
                 .build();
@@ -58,7 +59,7 @@ public class CreateProductCommandHandlerTest {
         // Assert
         assertEquals("Test Product", result.getName());
         assertEquals("Electronics", result.getCategory());
-        assertEquals(299.99, result.getPrice());
+        assertEquals(BigDecimal.valueOf(299.99), result.getPrice());
         assertEquals(10, result.getQuantity());
         assertEquals(1, result.getReviews().size());
         assertEquals("John Doe", result.getReviews().get(0).getReviewerName());

@@ -11,4 +11,8 @@ server:
 
 product:
   service:
-    url: ttp://localhost:8050
+    url: http://localhost:8050
+
+user:
+  service:
+    url: http://localhost:8095

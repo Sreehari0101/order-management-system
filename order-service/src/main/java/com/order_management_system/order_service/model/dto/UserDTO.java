@@ -6,19 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDTO {
-    private String productId;
+public class UserDTO {
+    private String userId;
     private String name;
-    private String category;
-    private BigDecimal price;
-    private int quantity;
-    private List<ReviewDTO> reviews;
-
+    private String email;
+    private String phoneNumber;
+    private String address;
 }
